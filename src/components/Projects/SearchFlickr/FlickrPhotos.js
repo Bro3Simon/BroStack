@@ -1,13 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
+import Picture from './Picture';
 
-class FlickrPhotos extends Component {
-
-    render() {
+const FlickrPhotos = props => { 
+  
+    let pictures;
+    if (props.pictures.length > 0) {
+      pictures = props.pictures.map(picture => <Picture url={picture.media.m} key={picture.author_id} title={picture.title} />);
+    }
+    else {
         return (
-            <div id="flickrPhotos" className="row justify-content-around m-2">
-            </div>
+            <p>Sorry, no pictures matched your search. Please try again.</p>
         )
     }
-}
+    
+      return(
+          <div className="row justify-content-around">
+          {pictures}
+        </div>     
+      );
+    }
 
 export default FlickrPhotos;

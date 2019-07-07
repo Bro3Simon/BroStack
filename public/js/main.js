@@ -40,31 +40,3 @@ $('.navbar a').click(function () {
   }, 2000);
   return false;
 });
-
-$('#searchFlickrForm').submit(function (event) {
-
-  // stop the form from making us leave the page
-  event.preventDefault();
-
-  // Ajax Variables
-  var flickerAPI = "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
-  var searchFLickrField = $("#flickrSearch").val();
-  var flickrOptions = {
-    tags: searchFLickrField,
-    format: "json"
-  };    
-  // Ajax Variables
-
-  function displayPhotos(data) {
-    var photoHTML = "";
-    $.each(data.items, function (i, photo) {
-      photoHTML += '<div class="d-flex justify-content-center align-items-center m-2 col-5 col-lg-2">';
-      photoHTML += '<a href="' + photo.link + '" target="_blank" rel="noopener">';
-      photoHTML += '<img class="img-fluid" src="' + photo.media.m + '" alt="'+photo.title +'"></a></div>';
-      console.log(photo.title);
-    }); // end each
-    $('#flickrPhotos').html(photoHTML);
-  }
-  $.getJSON(flickerAPI, flickrOptions, displayPhotos);
-
-});

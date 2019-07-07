@@ -1,15 +1,31 @@
 import React, { Component } from 'react';
 
-
 class SearchForm extends Component {
-    render() {
+ 
+    state = {
+        searchText: ''
+      }
+      
+      onSearchChange = e => {
+        this.setState({ searchText: e.target.value });
+      }
+      
+      handleSubmit = e => {
+        e.preventDefault();
+        this.props.onSearch(this.query.value);
+        e.currentTarget.reset();
+      }
+      
+      render() {  
         return (
-            <form id="searchFlickrForm" className="form-inline row justify-content-center mt-3 mx-2">
-                <label className="col-form-label mx-sm-1" htmlFor="flickrSearch">Enter a Search Term</label>
-                <input className="form-control mb-3 mb-sm-0 mx-5 mx-sm-1" id="flickrSearch" type="search"
-                    name="flickrSearch" placeholder="Cats" />
-                <input className="btn btn-primary mx-sm-1" id="flickrSubmit" type="submit" value="Search" />
-            </form>
+          <form className="form-inline justify-content-center m-2" onSubmit={this.handleSubmit} >
+            <input className="form-control w-auto m-2" type="search" 
+                   onChange={this.onSearchChange}
+                   name="search" 
+                   ref={(input) => this.query = input}
+                   placeholder="Search..." />
+            <button className="btn btn-primary" type="submit" id="submit" >Search</button>
+          </form>      
         )
     }
 }
