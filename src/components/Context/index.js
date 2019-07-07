@@ -141,10 +141,10 @@ export class Provider extends Component {
         },
         {
             nav: {
-                id: "searchGifsDisplay",
-                button: "Search GIFs",
-                link: "searchGifsLink",
-                href: "#searchGifsDisplay"
+                id: "searchFlickrDisplay",
+                button: "Search Flickr",
+                link: "searchFlickrLink",
+                href: "#searchFlickrDisplay"
             }
         },
         {
