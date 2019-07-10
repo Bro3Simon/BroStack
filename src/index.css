@@ -39,6 +39,10 @@ main {
   background-color: rgba(157, 200, 228, 0.2); 
 }
 
+.no-hover{
+  text-decoration: none !important;
+}
+
 #contact {
   padding: 100px 0 150px 0;
 }

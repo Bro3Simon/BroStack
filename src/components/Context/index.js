@@ -154,6 +154,14 @@ export class Provider extends Component {
                 link: "scoreboardLink",
                 href: "#scoreboardDisplay"
             }
+        },
+        {
+            nav: {
+                id: "clientDisplay",
+                button: "Client Work",
+                link: "clientLink",
+                href: "#clientDisplay"
+            }
         }
     ];
 
