@@ -5,7 +5,7 @@ const FlickrPhotos = props => {
   
     let pictures;
     if (props.pictures.length > 0) {
-      pictures = props.pictures.map(picture => <Picture url={picture.media.m} key={picture.author_id} title={picture.title} />);
+      pictures = props.pictures.map((picture, index) => <Picture url={picture.media.m} key={index} title={picture.title} />);
     }
     else {
         return (

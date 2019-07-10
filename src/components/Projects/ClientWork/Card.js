@@ -16,7 +16,7 @@ class Card extends Component {
                 </div>
                 <div className="card-footer p-0 border-0">
                     <img src={image} className="card-img mt-auto" alt={name} />
-                    <a className="text-white no-hover" href={href} target="_blank">
+                    <a className="text-white no-hover" href={href} target="_blank" rel="noopener noreferrer">
                         <button className="btn btn-primary m-2">View</button>
                     </a>
 
