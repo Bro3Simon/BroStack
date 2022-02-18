@@ -1,0 +1,137 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "prettier"
+  ],
+  "ignorePatterns": ["**/*.js"],
+  "overrides": [],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "project": ["./tsconfig.json"],
+    "sourceType": "module"
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "import",
+    "react",
+    "simple-import-sort",
+    "sort-destructure-keys",
+    "sort-keys-fix"
+  ],
+  "rules": {
+    "@typescript-eslint/ban-types": "off",
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "format": ["PascalCase"],
+        "prefix": ["is", "are", "has", "have", "can", "should"],
+        "selector": "variable",
+        "types": ["boolean"]
+      }
+    ],
+    "@typescript-eslint/no-explicit-any": "off",
+    "camelcase": [
+      "error",
+      {
+        "properties": "never"
+      }
+    ],
+    "comma-dangle": ["error", "always-multiline"],
+    "func-style": ["error", "declaration"],
+    "import/no-default-export": "error",
+    "max-len": [
+      "error",
+      {
+        "code": 100,
+        "ignoreTemplateLiterals": true,
+        "ignoreStrings": true
+      }
+    ],
+    "no-duplicate-imports": "error",
+    "padding-line-between-statements": [
+      "error",
+      {
+        "blankLine": "always",
+        "next": "*",
+        "prev": ["block-like", "for", "function", "if"]
+      },
+      {
+        "blankLine": "always",
+        "next": "return",
+        "prev": "*"
+      },
+      {
+        "blankLine": "always",
+        "next": "*",
+        "prev": ["const", "let"]
+      },
+      {
+        "blankLine": "any",
+        "next": ["const", "let"],
+        "prev": ["const", "let"]
+      }
+    ],
+    "quotes": ["error", "single", { "allowTemplateLiterals": true, "avoidEscape": true }],
+    "react/boolean-prop-naming": [
+      "error",
+      {
+        "rule": "^(is|are|has|have|can|should)[A-Z]([A-Za-z0-9]?)+",
+        "validateNested": false
+      }
+    ],
+    "react/destructuring-assignment": ["error", "always"],
+    "react/jsx-handler-names": [
+      "error",
+      {
+        "checkInlineFunction": false,
+        "checkLocalVariables": true,
+        "eventHandlerPropPrefix": false
+      }
+    ],
+    "react/jsx-newline": ["error", { "prevent": false, "allowMultilines": false }],
+    "react/jsx-sort-props": [
+      "error",
+      {
+        "ignoreCase": true,
+        "noSortAlphabetically": false
+      }
+    ],
+    "react/react-in-jsx-scope": "off",
+    "semi": ["error", "always"],
+    "simple-import-sort/exports": "error",
+    "simple-import-sort/imports": [
+      "error",
+      {
+        "groups": [
+          ["^react"],
+          ["^@redux"],
+          ["^react-router"],
+          ["^@?\\w"],
+          ["^@mui"],
+          ["^src", "^[./]"],
+          [".*(jpg|png)"],
+          [".*(.types)"]
+        ]
+      }
+    ],
+    "sort-destructure-keys/sort-destructure-keys": "error",
+    "sort-keys": [
+      "error",
+      "asc",
+      {
+        "caseSensitive": true,
+        "minKeys": 2,
+        "natural": true
+      }
+    ],
+    "sort-keys-fix/sort-keys-fix": "warn",
+    "spaced-comment": "error"
+  }
+}

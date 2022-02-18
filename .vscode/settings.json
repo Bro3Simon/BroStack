@@ -1,0 +1,14 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "files.eol": "\n",
+  "files.exclude": {},
+  "search.exclude": {
+    "/package-lock.json": true
+  },
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "workbench.editor.labelFormat": "short"
+}
