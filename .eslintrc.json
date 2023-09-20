@@ -50,8 +50,9 @@
       "error",
       {
         "code": 100,
-        "ignoreTemplateLiterals": true,
-        "ignoreStrings": true
+        "ignoreRegExpLiterals": true,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true
       }
     ],
     "no-duplicate-imports": "error",

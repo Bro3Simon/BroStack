@@ -12,6 +12,7 @@ export function Welcome() {
   return (
     <Box
       component="section"
+      data-testid="welcome"
       sx={{
         backgroundImage: `url(${welcome})`,
         backgroundPosition: 'center',

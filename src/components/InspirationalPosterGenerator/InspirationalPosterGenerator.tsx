@@ -24,9 +24,11 @@ export function InspirationalPosterGenerator() {
           <img alt={image.title} src={image.source} />
 
           <Box sx={{ bgcolor: 'darkgoldenrod', px: 2, py: 1 }}>
-            <Typography component="blockquote">{quote.text}</Typography>
+            <Typography component="blockquote" data-testid="quote">
+              {quote.text}
+            </Typography>
 
-            <Typography component="figcaption" sx={{ textAlign: 'center' }}>
+            <Typography component="figcaption" data-testid="author" sx={{ textAlign: 'center' }}>
               ~ {quote.author}
             </Typography>
           </Box>

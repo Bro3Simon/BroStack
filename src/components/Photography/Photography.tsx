@@ -10,14 +10,14 @@ export function Photography() {
       <Zoom>
         <Typography>
           <Typography component="span">
-            {`I enjoy expressing my artistic side from time to time through photography and video. Enjoy
-          a few of my favorite photos below or check out my `}
+            {`I enjoy expressing my artistic side from time to time through photography and video. Enjoy a few of my favorite photos below or check out my `}
           </Typography>
 
           <Typography
             component="a"
             href="https://www.youtube.com/watch?v=WB_et_y80Xc"
             rel="noopener noreferrer"
+            sx={{ color: 'primary.main' }}
             target="_blank"
           >
             video

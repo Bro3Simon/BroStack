@@ -9,7 +9,6 @@ export function useAddPlayer(onAddPlayer: (newPlayerName: string) => void) {
     reset,
   } = useForm({
     defaultValues: { newPlayerName: '' },
-    mode: 'onSubmit',
   });
 
   function handleSubmit({ newPlayerName }: FormValues) {

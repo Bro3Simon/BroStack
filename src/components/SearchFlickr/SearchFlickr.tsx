@@ -13,7 +13,7 @@ export function SearchFlickr() {
         component="form"
         onSubmit={handleSubmit}
         sx={{
-          alignItems: 'center',
+          alignItems: 'baseline',
           display: 'flex',
           gap: 2,
           justifyContent: 'center',

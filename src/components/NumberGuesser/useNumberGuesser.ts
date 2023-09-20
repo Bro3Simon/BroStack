@@ -23,10 +23,9 @@ export function useNumberGuesser() {
     return Math.floor(Math.random() * max) + min;
   }
 
-  const handleSubmit = rhfHandleSubmit(({ guess, secretNumber }) => {
-    if (guess > 0) submitGuess(guess);
-    else guessNumber(secretNumber);
-  });
+  const handleSubmit = rhfHandleSubmit(({ guess, secretNumber }) =>
+    guess > 0 ? submitGuess(guess) : guessNumber(secretNumber),
+  );
 
   function guessNumber(secretNumber: number) {
     let computerGuess = 0;
@@ -59,13 +58,13 @@ export function useNumberGuesser() {
     if (guess !== computerNumber && !userGuesses.includes(guess)) {
       setState('tryAgain');
       setFocus('guess');
-      setUserGuesses((previousUserGuesses) => {
-        return [...previousUserGuesses, guess].sort(
+      setUserGuesses((previousUserGuesses) =>
+        [...previousUserGuesses, guess].sort(
           // Custom compare function so that sort doesn't convert the values to strings,
           // and incorrectly sort them.
           (firstNumber, secondNumber) => firstNumber - secondNumber,
-        );
-      });
+        ),
+      );
     } else {
       setState('correctGuess');
       setUserGuesses([]);

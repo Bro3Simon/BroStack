@@ -1,6 +1,6 @@
 import { SyntheticEvent, useState } from 'react';
 
-export function useClientWork() {
+export function useTabs() {
   const [tab, setTab] = useState(0);
 
   function handleChangeTab(event: SyntheticEvent<Element, Event>, tab: number) {

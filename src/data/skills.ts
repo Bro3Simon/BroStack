@@ -8,6 +8,7 @@ export const SKILLS = {
         },
         'Agile - Scrum',
         'Version Control',
+        'Git Hooks',
         { text: 'CMS', title: 'Content Management Websites' },
         'Responsive Websites',
         'Web Accessibility Compliant Websites',
@@ -23,13 +24,14 @@ export const SKILLS = {
         'Dashboards',
         'Graphs',
         'API HTTP Requests',
+        'Automated Unit Testing',
         'Database Design',
         { text: 'ERD', title: 'Entity Relationship Diagrams' },
         'Database Management',
         'Server Client FTP',
         'Documentation',
       ],
-      text: 'Development Concepts',
+      name: 'Development Concepts' as const,
     },
     {
       description: 'Languages, Frameworks, and Libraries',
@@ -50,6 +52,8 @@ export const SKILLS = {
         'RTK Query',
         'React Hook Form',
         'React Window',
+        'Jest',
+        'React Testing Library',
         'MUI',
         'Chart.js',
         'Node.js',
@@ -57,7 +61,7 @@ export const SKILLS = {
         'Axios',
         'SQL',
       ],
-      text: 'Languages',
+      name: 'Languages' as const,
     },
     {
       items: [
@@ -69,6 +73,7 @@ export const SKILLS = {
         'GitHub Actions',
         'GitLab',
         'GitLab Pipelines',
+        'Husky',
         'Fork',
         'Docker',
         'Visual Studio Code',
@@ -83,7 +88,7 @@ export const SKILLS = {
         'FileZilla',
         'Adobe Creative Suite',
       ],
-      text: 'Development Tools',
+      name: 'Development Tools' as const,
     },
     {
       items: [
@@ -107,7 +112,7 @@ export const SKILLS = {
         'Tableau',
         'Google Analytics',
       ],
-      text: 'Analysis',
+      name: 'Analysis' as const,
     },
     {
       items: [
@@ -120,7 +125,7 @@ export const SKILLS = {
         'Outlook',
         'Teams',
       ],
-      text: 'Common',
+      name: 'Common' as const,
     },
   ],
 };

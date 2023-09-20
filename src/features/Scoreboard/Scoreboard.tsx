@@ -1,12 +1,18 @@
-import { Box, Button, CardContent, Icon, Typography } from '@mui/material';
+import StarIcon from '@mui/icons-material/Star';
+import { Box, CardContent, Typography } from '@mui/material';
 
 import { AddPlayer } from 'src/features/Scoreboard/components/AddPlayer';
+import { PlayerButton } from 'src/features/Scoreboard/components/PlayerButton';
 import { StopWatch } from 'src/features/Scoreboard/components/StopWatch';
 import { useScoreboard } from 'src/features/Scoreboard/useScoreboard';
 
+export const PLAYERS_TITLE = 'Players:';
+export const REMOVE_BUTTON_TEXT = 'X';
+export const DECREMENT_BUTTON_TEXT = '-';
+export const INCREMENT_BUTTON_TEXT = '+';
+
 export function Scoreboard() {
-  const { handleAddPlayer, handleChangeScore, handleRemovePlayer, highScore, players } =
-    useScoreboard();
+  const { handleAddPlayer, handleClickPlayerButton, highScore, players } = useScoreboard();
 
   return (
     <CardContent>
@@ -21,7 +27,7 @@ export function Scoreboard() {
           textTransform: 'uppercase',
         }}
       >
-        <Typography>Players: {players.length}</Typography>
+        <Typography>{`${PLAYERS_TITLE} ${players.length}`}</Typography>
 
         <StopWatch />
       </Box>
@@ -38,15 +44,10 @@ export function Scoreboard() {
               p: 1,
             }}
           >
-            <Button
-              color="error"
-              onClick={() => handleRemovePlayer(id)}
-              size="small"
-              sx={{ height: 32, minWidth: 32, width: 32 }}
-              variant="contained"
-            >
-              X
-            </Button>
+            <PlayerButton
+              onClick={() => handleClickPlayerButton(id, 'remove')}
+              text={REMOVE_BUTTON_TEXT}
+            />
 
             <Box
               sx={{
@@ -56,7 +57,7 @@ export function Scoreboard() {
                 gap: 1,
               }}
             >
-              {highScore === score ? <Icon sx={{ color: 'gold' }}>star</Icon> : null}
+              {highScore === score ? <StarIcon sx={{ color: 'gold' }} /> : null}
 
               <Typography
                 sx={{
@@ -69,27 +70,17 @@ export function Scoreboard() {
             </Box>
 
             <Box sx={{ alignItems: 'center', display: 'flex', gap: 1 }}>
-              <Button
-                color="error"
-                onClick={() => handleChangeScore(id, 'decrement')}
-                size="small"
-                sx={{ height: 32, minWidth: 32, width: 32 }}
-                variant="contained"
-              >
-                -
-              </Button>
+              <PlayerButton
+                onClick={() => handleClickPlayerButton(id, 'decrement')}
+                text={DECREMENT_BUTTON_TEXT}
+              />
 
               <Typography sx={{ minWidth: '2em', my: 2, textAlign: 'center' }}>{score}</Typography>
 
-              <Button
-                color="success"
-                onClick={() => handleChangeScore(id, 'increment')}
-                size="small"
-                sx={{ height: 32, minWidth: 32, width: 32 }}
-                variant="contained"
-              >
-                +
-              </Button>
+              <PlayerButton
+                onClick={() => handleClickPlayerButton(id, 'increment')}
+                text={INCREMENT_BUTTON_TEXT}
+              />
             </Box>
           </Box>
         ))}

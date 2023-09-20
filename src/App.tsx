@@ -42,7 +42,10 @@ export function App() {
                       pb: title === 'Scoreboard' ? 0 : 2,
                     }}
                   >
-                    <CardHeader title={title} titleTypographyProps={{ textAlign: 'center' }} />
+                    <CardHeader
+                      title={title}
+                      titleTypographyProps={{ component: 'h3', textAlign: 'center', variant: 'h5' }}
+                    />
 
                     <Component />
                   </Card>

@@ -1,14 +1,19 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
+import { getImages } from 'src/components/SearchFlickr/service';
 import bugFixing from 'src/images/bugFixing.svg';
 import notFound from 'src/images/notFound.svg';
 import webSearch from 'src/images/webSearch.svg';
 
-type FlickrPhoto = { id: string; secret: string; server: string; title: string };
-
-const DEFAULT_FORM_MESSAGE = 'Enter some text and click search to display images from Flickr.';
-const DEFAULT_FORM_IMAGE = webSearch;
+export const DEFAULT_FORM_MESSAGE =
+  'Enter some text and click search to display images from Flickr.';
+export const DEFAULT_FORM_IMAGE = webSearch;
+export const LOADING_MESSAGE = 'Loading Images...';
+export const NO_RESULTS_FOUND_MESSAGE = 'Sorry no results! Try searching for something else.';
+export const NO_RESULTS_FOUND_IMAGE = notFound;
+export const ERROR_MESSAGE = 'Please inform the administrator that this feature is broken:';
+export const ERROR_IMAGE = bugFixing;
 
 export function useSearchFlickr() {
   const [formMessage, setFormMessage] = useState(DEFAULT_FORM_MESSAGE);
@@ -21,46 +26,20 @@ export function useSearchFlickr() {
     handleSubmit: rhfHandleSubmit,
   } = useForm({
     defaultValues: { searchCriteria: '' },
-    mode: 'onChange',
   });
 
   const handleSubmit = rhfHandleSubmit(async ({ searchCriteria }) => {
-    setFormMessage('Loading Images...');
+    setFormMessage(LOADING_MESSAGE);
     setPhotos([]);
 
-    const response = await fetch(
-      `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=b80455bd18a1449116a3516a7859a645&text=${searchCriteria}&safe_search=1&content_type=1&per_page=12&page=1&format=json&nojsoncallback=1`,
-    )
-      .then((response) =>
-        response.json().then((response) => {
-          if (response.stat === 'fail') return response.message;
-
-          const {
-            photos: { photo: photos },
-          } = response;
-          const sizeSuffix = 'q';
-
-          //   Mutate the data to the format I want
-          return photos.map(({ id, secret, server, title }: FlickrPhoto) => {
-            return {
-              title,
-              url: `https://live.staticflickr.com/${server}/${id}_${secret}_${sizeSuffix}.jpg`,
-            };
-          });
-        }),
-      )
-      .catch(({ message }) => message);
+    const response = await getImages(searchCriteria);
 
     if (typeof response === 'string') {
-      setFormMessage(`Please inform the administrator that this feature is broken: ${response}.`);
-      setFormImage(bugFixing);
+      setFormMessage(`${ERROR_MESSAGE} ${response}.`);
+      setFormImage(ERROR_IMAGE);
     } else {
-      setFormMessage(
-        response.length
-          ? DEFAULT_FORM_MESSAGE
-          : 'Sorry no results! Try searching for something else.',
-      );
-      setFormImage(response.length ? DEFAULT_FORM_IMAGE : notFound);
+      setFormMessage(response.length ? DEFAULT_FORM_MESSAGE : NO_RESULTS_FOUND_MESSAGE);
+      setFormImage(response.length ? DEFAULT_FORM_IMAGE : NO_RESULTS_FOUND_IMAGE);
       setPhotos(response);
     }
   });

@@ -8,26 +8,26 @@ import { Scoreboard } from 'src/features/Scoreboard';
 export const PROJECTS = [
   {
     componentName: InspirationalPosterGenerator,
-    title: 'Inspirational Poster Generator',
+    title: 'Inspirational Poster Generator' as const,
   },
   {
     componentName: NumberGuesser,
-    title: 'Number Guesser',
+    title: 'Number Guesser' as const,
   },
   {
     componentName: ButtonAnimation,
-    title: 'Button Animation',
+    title: 'Button Animation' as const,
   },
   {
     componentName: SearchFlickr,
-    title: 'Search Flickr',
+    title: 'Search Flickr' as const,
   },
   {
     componentName: Scoreboard,
-    title: 'Scoreboard',
+    title: 'Scoreboard' as const,
   },
   {
     componentName: ClientWork,
-    title: 'Client Work',
+    title: 'Client Work' as const,
   },
 ];

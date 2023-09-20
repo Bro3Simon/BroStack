@@ -10,5 +10,9 @@ export function useNavBar() {
     setIsDrawerOpen(!isDrawerOpen);
   }
 
-  return { handleToggleDrawer, isDrawerOpen, isMdAndUp };
+  return {
+    handleToggleDrawer,
+    isDrawerOpen,
+    isMdAndUp,
+  };
 }

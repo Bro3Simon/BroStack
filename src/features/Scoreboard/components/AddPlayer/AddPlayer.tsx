@@ -5,6 +5,8 @@ import { useAddPlayer } from 'src/features/Scoreboard/components/AddPlayer/useAd
 
 type AddPlayerProps = { onAddPlayer: (newPlayerName: string) => void };
 
+export const ADD_PLAYER_TEXT = 'add player';
+
 export function AddPlayer({ onAddPlayer }: AddPlayerProps) {
   const { control, onSubmit } = useAddPlayer(onAddPlayer);
 
@@ -49,7 +51,7 @@ export function AddPlayer({ onAddPlayer }: AddPlayerProps) {
       ></FormTextField>
 
       <Button color="success" size="small" type="submit" variant="contained">
-        Add Player
+        {ADD_PLAYER_TEXT}
       </Button>
     </Box>
   );

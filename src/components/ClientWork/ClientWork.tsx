@@ -1,40 +1,23 @@
-import { Fragment } from 'react';
-
 import { Box, Button, CardActions, CardContent, CardMedia, Link, Tab, Tabs } from '@mui/material';
 
-import { useClientWork } from 'src/components/ClientWork/useClientWork';
 import { CLIENT_WORK } from 'src/data/clientWork';
+import { useTabs } from 'src/hooks/useTabs';
+import { computeTabAndPanelProps } from 'src/utilities';
 
 export function ClientWork() {
-  const { handleChangeTab, tab } = useClientWork();
+  const { handleChangeTab, tab } = useTabs();
 
   return (
     <>
       <Tabs onChange={handleChangeTab} value={tab} variant="scrollable">
-        {CLIENT_WORK.map(({ name }) => {
-          const accessibleName = name.replace(' ', '-');
-
-          return (
-            <Tab
-              aria-controls={`panel-${accessibleName}`}
-              id={`tab-${accessibleName}`}
-              key={name}
-              label={name}
-            />
-          );
-        })}
+        {CLIENT_WORK.map(({ name }) => (
+          <Tab key={name} {...computeTabAndPanelProps(name, 'tab')} />
+        ))}
       </Tabs>
 
-      {CLIENT_WORK.map(({ description, href, image, name }, index) => {
-        const accessibleName = name.replace(' ', '-');
-
-        return tab === index ? (
-          <Box
-            aria-labelledby={`tab-${accessibleName}`}
-            id={`panel-${accessibleName}`}
-            key={name}
-            role="tabpanel"
-          >
+      {CLIENT_WORK.map(({ description, href, image, name }, index) =>
+        tab === index ? (
+          <Box key={name} {...computeTabAndPanelProps(name, 'panel')}>
             <CardMedia image={image} sx={{ height: 400 }} title={name} />
 
             <CardContent sx={{ bgcolor: 'primary.main', color: 'primary.contrastText' }}>
@@ -53,8 +36,8 @@ export function ClientWork() {
               </Button>
             </CardActions>
           </Box>
-        ) : null;
-      })}
+        ) : null,
+      )}
     </>
   );
 }

@@ -56,7 +56,7 @@ export function NavBar() {
       ) : (
         <Drawer onClose={handleToggleDrawer} open={isDrawerOpen}>
           <nav>
-            <List onClick={handleToggleDrawer} onKeyDown={handleToggleDrawer}>
+            <List onClick={handleToggleDrawer}>
               {NAV_BAR_LINKS.map(({ href, text }) => (
                 <ListItem disablePadding key={text}>
                   <ListItemButton component="a" href={href}>
