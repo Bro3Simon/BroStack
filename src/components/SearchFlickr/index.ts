@@ -1,1 +1,0 @@
-export { SearchFlickr } from './SearchFlickr';

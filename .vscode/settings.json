@@ -1,14 +1,14 @@
 {
+  "cSpell.words": ["fontsource", "mediaquery", "roboto"],
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
-  "files.eol": "\n",
-  "files.exclude": {},
+  "editor.linkedEditing": true,
+  "reactSnippets.settings.importReactOnTop": false,
   "search.exclude": {
     "/package-lock.json": true
   },
-  "typescript.preferences.importModuleSpecifier": "non-relative",
-  "workbench.editor.labelFormat": "short"
+  "typescript.preferences.importModuleSpecifier": "non-relative"
 }
