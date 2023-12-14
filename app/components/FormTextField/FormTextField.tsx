@@ -60,7 +60,14 @@ export function FormTextField<T extends FieldValues>({
   ...rest
 }: FormTextFieldProps<T>) {
   const {
-    field: { onChange: reactHookFormOnChange, ref, value, ...field },
+    field: {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      disabled: isReactHookFormFieldDisabled,
+      onChange: reactHookFormOnChange,
+      ref,
+      value,
+      ...field
+    },
     fieldState: { error },
     formState: { isSubmitting },
   } = useController({

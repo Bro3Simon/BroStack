@@ -1,5 +1,5 @@
 import { ButtonAnimation } from "app/components/ButtonAnimation";
-import { ClientWork } from "app/components/ClientWork";
+import { ExternalWork } from "app/components/ExternalWork";
 import { InspirationalPosterGenerator } from "app/components/InspirationalPosterGenerator";
 import { NumberGuesser } from "app/components/NumberGuesser";
 import { SearchFlickr } from "app/components/SearchFlickr";
@@ -27,7 +27,7 @@ export const PROJECTS = [
     title: "Scoreboard" as const,
   },
   {
-    componentName: ClientWork,
-    title: "Client Work" as const,
+    componentName: ExternalWork,
+    title: "External Work" as const,
   },
 ];

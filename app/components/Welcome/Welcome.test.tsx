@@ -1,8 +1,9 @@
 import { render, screen } from "@testing-library/react";
 
-import { JOB_TITLE, Welcome } from "app/components/Welcome/Welcome";
+import { Welcome } from "app/components/Welcome/Welcome";
 import welcome from "app/images/welcome.jpg";
 import { setupIntersectionObserverMock } from "app/testUtilities";
+import { JOB_TITLE } from "app/utilities";
 
 describe("test Welcome", () => {
   beforeEach(() => {

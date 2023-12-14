@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 
-import { Profile } from "app/features/Profile/Profile";
+import { PROFILE_SUMMARY, Profile } from "app/features/Profile/Profile";
 import {
   setupIntersectionObserverMock,
   testCategoriesIsRendered,
@@ -11,21 +11,13 @@ describe("test Profile", () => {
     setupIntersectionObserverMock();
     render(<Profile />);
 
-    expect(screen.getByText("Experienced business")).toBeInTheDocument();
-    expect(screen.getByText("IT")).toBeInTheDocument();
-    expect(
-      screen.getByText(
-        "professional described as, responsible, cooperative quick-learning, motivated and possessing a diverse background. Has experience leading teams, developing information systems and software using various forms of the",
-      ),
-    ).toBeInTheDocument();
-    expect(screen.getAllByText("SDLC")).toHaveLength(2);
-    expect(
-      screen.getByText(
-        "and creating data reports. Experiences include administration, supervising, quality assurance software testing, project management, business systems analysis, creating websites, organizing massive amounts of online content to create user friendly",
-      ),
-    ).toBeInTheDocument();
-    expect(screen.getByText("GUI")).toBeInTheDocument();
-    expect(screen.getByText(", and user support.")).toBeInTheDocument();
+    expect(screen.getByText(PROFILE_SUMMARY[0].trim())).toBeInTheDocument();
+    expect(screen.getByText(PROFILE_SUMMARY[1].trim())).toBeInTheDocument();
+    expect(screen.getByText(PROFILE_SUMMARY[2].trim())).toBeInTheDocument();
+    expect(screen.getByText(PROFILE_SUMMARY[3].trim())).toBeInTheDocument();
+    expect(screen.getByText(PROFILE_SUMMARY[4].trim())).toBeInTheDocument();
+    expect(screen.getByText(PROFILE_SUMMARY[5].trim())).toBeInTheDocument();
+    expect(screen.getByText(PROFILE_SUMMARY[6].trim())).toBeInTheDocument();
   });
 
   test("renders Categories", () => {

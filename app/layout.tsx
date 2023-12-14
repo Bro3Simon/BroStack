@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
 import { ThemeRegistry } from "app/ThemeRegistry";
-import { JOB_TITLE } from "app/components/Welcome/Welcome";
+import { JOB_TITLE } from "app/utilities";
 
 import type { Metadata } from "next";
 

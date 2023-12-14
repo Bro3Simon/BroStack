@@ -1,3 +1,5 @@
+export const JOB_TITLE = "Fullstack Developer";
+
 export function computeTabAndPanelProps(
   name: string,
   variant: "tab" | "panel",

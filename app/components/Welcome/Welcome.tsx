@@ -3,8 +3,7 @@ import { Slide } from "react-awesome-reveal";
 
 import { useSmAndUp } from "app/hooks/useSmAndUp";
 import welcome from "app/images/welcome.jpg";
-
-export const JOB_TITLE = "Fullstack Developer";
+import { JOB_TITLE } from "app/utilities";
 
 export function Welcome() {
   const { isSmAndUp } = useSmAndUp();
