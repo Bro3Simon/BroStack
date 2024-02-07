@@ -1,10 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { ReactNode, useEffect } from "react";
+import { useEffect } from "react";
 
 import { render, screen } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
 
 import { InspirationalPosterGenerator } from "app/components/InspirationalPosterGenerator";
+import { Children } from "app/types/commonProps";
 
 jest.mock("@mui/material", () => ({
   __esModule: true,
@@ -13,9 +14,8 @@ jest.mock("@mui/material", () => ({
     children,
     onEnter,
   }: {
-    children: ReactNode;
     onEnter: () => void;
-  }) => {
+  } & Children) => {
     useEffect(() => {
       onEnter();
       setTimeout(() => {

@@ -1,17 +1,14 @@
-"use client";
-
 import { Card, CardHeader } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
-import { Zoom } from "react-awesome-reveal";
 
-import { NavBar } from "app/components/NavBar";
 import { Photography } from "app/components/Photography";
-import { Section } from "app/components/Section";
 import { Welcome } from "app/components/Welcome";
+import { Zoom } from "app/components/Zoom";
 import { PROJECTS } from "app/data/projects";
+import { NavBar } from "app/features/NavBar";
 import { Profile } from "app/features/Profile";
+import { Section } from "app/features/Section";
 
-// eslint-disable-next-line import/no-default-export
 export default function Home() {
   return (
     <>
@@ -20,24 +17,22 @@ export default function Home() {
       <main>
         <Welcome />
 
-        <Section id="profile" sectionTitle="Profile Summary">
+        <Section id="profile" title="Profile Summary">
           <Profile />
         </Section>
 
-        <Section id="projects" sectionTitle="My Projects">
+        <Section id="projects" title="My Projects">
           <Grid2
+            alignItems="start"
             container
-            sx={{
-              alignItems: "start",
-              gap: 2,
-              justifyContent: "center",
-              mt: 2,
-            }}
+            gap={2}
+            justifyContent="center"
+            mt={2}
           >
             {PROJECTS.map(
               ({
                 // eslint-disable-next-line @typescript-eslint/naming-convention
-                componentName: Component,
+                Component,
                 title,
               }) => (
                 <Grid2 key={title} md={5} xs={12}>
@@ -65,7 +60,7 @@ export default function Home() {
           </Grid2>
         </Section>
 
-        <Section id="photography" sectionTitle="My Photography">
+        <Section id="photography" title="My Photography">
           <Photography />
         </Section>
       </main>

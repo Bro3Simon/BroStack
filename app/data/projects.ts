@@ -7,27 +7,27 @@ import { Scoreboard } from "app/features/Scoreboard";
 
 export const PROJECTS = [
   {
-    componentName: InspirationalPosterGenerator,
-    title: "Inspirational Poster Generator" as const,
+    Component: InspirationalPosterGenerator,
+    title: "Inspirational Poster Generator",
   },
   {
-    componentName: NumberGuesser,
-    title: "Number Guesser" as const,
+    Component: NumberGuesser,
+    title: "Number Guesser",
   },
   {
-    componentName: ButtonAnimation,
-    title: "Button Animation" as const,
+    Component: ButtonAnimation,
+    title: "Button Animation",
   },
   {
-    componentName: SearchFlickr,
-    title: "Search Flickr" as const,
+    Component: SearchFlickr,
+    title: "Search Flickr",
   },
   {
-    componentName: Scoreboard,
-    title: "Scoreboard" as const,
+    Component: Scoreboard,
+    title: "Scoreboard",
   },
   {
-    componentName: ExternalWork,
-    title: "External Work" as const,
+    Component: ExternalWork,
+    title: "External Work",
   },
-];
+] as const;

@@ -1,3 +1,5 @@
+"use client";
+
 // TODO: Review accessibility guidelines for this rule.
 /* eslint-disable jsx-a11y/no-autofocus */
 import {
@@ -10,7 +12,7 @@ import {
 
 import { FormTextField } from "app/components/FormTextField";
 import { useNumberGuesser } from "app/components/NumberGuesser/useNumberGuesser";
-import { arrayToCommaSeparatedString } from "app/utilities";
+import { REQUIRED_RULE, arrayToCommaSeparatedString } from "app/utilities";
 
 export const WELCOME_MESSAGE =
   "Let's play a game! First, I will try to guess your number.";
@@ -34,6 +36,20 @@ export const TRIED_NUMBERS_MESSAGE = "Numbers you have tried:";
 export const CORRECT_GUESS_MESSAGE = "That's correct!";
 export const PLAY_AGAIN_OFFER = "Do you want to play again?";
 export const PLAY_AGAIN_BUTTON_TEXT = "Play Again";
+export const MINIMUM_0_ERROR_MESSAGE = "Must be greater than 0";
+export const MINIMUM_1_RULE = {
+  min: {
+    message: MINIMUM_0_ERROR_MESSAGE,
+    value: 1,
+  },
+};
+export const MAXIMUM_10_ERROR_MESSAGE = "Must be less than 11";
+export const MAXIMUM_10_RULE = {
+  max: {
+    message: MAXIMUM_10_ERROR_MESSAGE,
+    value: 10,
+  },
+};
 
 export function NumberGuesser() {
   const {
@@ -56,9 +72,9 @@ export function NumberGuesser() {
           <>
             <Typography>{WELCOME_MESSAGE}</Typography>
 
-            <Typography sx={{ mt: 3 }}>{PICK_A_NUMBER_INSTRUCTIONS}</Typography>
+            <Typography mt={3}>{PICK_A_NUMBER_INSTRUCTIONS}</Typography>
 
-            <Box sx={{ mt: 2 }}>
+            <Box mt={2}>
               <FormTextField
                 control={control}
                 label="Secret Number"
@@ -68,11 +84,8 @@ export function NumberGuesser() {
                     message: "Must be less than 1,000",
                     value: 999,
                   },
-                  min: {
-                    message: "Must be greater than 0",
-                    value: 1,
-                  },
-                  required: { message: "Required", value: true },
+                  ...MINIMUM_1_RULE,
+                  ...REQUIRED_RULE,
                 }}
                 type="number"
               />
@@ -85,7 +98,7 @@ export function NumberGuesser() {
             <Typography>
               <Typography component="span">{RESULT_MESSAGE[0]}</Typography>
 
-              <Typography component="span" sx={{ fontWeight: "bold" }}>
+              <Typography component="span" fontWeight="bold">
                 {` ${secretNumber}`}
               </Typography>
 
@@ -95,7 +108,7 @@ export function NumberGuesser() {
             <Typography>
               <Typography component="span">{RESULT_MESSAGE[2]}</Typography>
 
-              <Typography component="span" sx={{ fontWeight: "bold" }}>
+              <Typography component="span" fontWeight="bold">
                 {` ${numberOfGuesses} `}
               </Typography>
 
@@ -112,35 +125,27 @@ export function NumberGuesser() {
           <>
             <Typography>{TRY_AGAIN_MESSAGE}</Typography>
 
-            <Typography variant="caption">{`${TRIED_NUMBERS_MESSAGE} ${arrayToCommaSeparatedString(
-              userGuesses,
-            )}.`}</Typography>
+            <Typography variant="caption">{`${TRIED_NUMBERS_MESSAGE} ${arrayToCommaSeparatedString(userGuesses)}.`}</Typography>
           </>
         ) : null}
 
         {state === "submitGuess" || state === "tryAgain" ? (
           <>
-            <Typography sx={{ mt: 3 }}>{SUBMIT_GUESS_INSTRUCTIONS}</Typography>
+            <Typography mt={3}>{SUBMIT_GUESS_INSTRUCTIONS}</Typography>
 
-            <Box sx={{ mt: 2 }}>
+            <Box mt={2}>
               <FormTextField
                 autoFocus
                 control={control}
                 label="Secret Number"
                 name={GUESS_NUMBER_INPUT_NAME}
                 rules={{
-                  max: {
-                    message: "Must be less than 11",
-                    value: 10,
-                  },
-                  min: {
-                    message: "Must be greater than 0",
-                    value: 1,
-                  },
-                  required: { message: "Required", value: true },
                   validate: (value) =>
-                    !userGuesses.includes(value) ||
+                    !userGuesses.includes(value.toString()) ||
                     "You have already tried that number.",
+                  ...MINIMUM_1_RULE,
+                  ...MAXIMUM_10_RULE,
+                  ...REQUIRED_RULE,
                 }}
                 type="number"
               />

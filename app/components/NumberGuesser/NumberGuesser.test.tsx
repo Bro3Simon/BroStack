@@ -168,7 +168,7 @@ describe("test NumberGuesser", () => {
   });
 
   describe("test try again state", () => {
-    const userGuesses = [1, 4, 7];
+    const userGuesses = ["1", "4", "7"];
 
     beforeEach(() => {
       jest.spyOn(useNumberGuesserFile, "useNumberGuesser").mockReturnValue({

@@ -1,5 +1,5 @@
 {
-  "cSpell.words": ["fontsource", "mediaquery", "roboto"],
+  "cSpell.words": ["fontsource", "mediaquery", "roboto", "testid"],
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },

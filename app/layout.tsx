@@ -1,6 +1,5 @@
-import { ReactNode } from "react";
-
 import { ThemeRegistry } from "app/ThemeRegistry";
+import { Children } from "app/types/commonProps";
 import { JOB_TITLE } from "app/utilities";
 
 import type { Metadata } from "next";
@@ -12,7 +11,7 @@ export const metadata: Metadata = {
   title: `Simon - ${JOB_TITLE}`,
 };
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default function RootLayout({ children }: Children) {
   return (
     <html lang="en">
       <body>

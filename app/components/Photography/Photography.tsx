@@ -1,16 +1,20 @@
 import { Box, Typography } from "@mui/material";
-import { Zoom } from "react-awesome-reveal";
 
+import { Zoom } from "app/components/Zoom";
 import { IMAGES } from "app/data/images";
+
+export const PHOTOGRAPHY_SUMMARY = [
+  "I enjoy expressing my artistic side from time to time through photography and video. Enjoy a few of my favorite photos below or check out my ",
+  "video",
+  " on YouTube that has more than one million views!",
+];
 
 export function Photography() {
   return (
     <>
       <Zoom>
         <Typography>
-          <Typography component="span">
-            {`I enjoy expressing my artistic side from time to time through photography and video. Enjoy a few of my favorite photos below or check out my `}
-          </Typography>
+          <Typography component="span">{PHOTOGRAPHY_SUMMARY[0]}</Typography>
 
           <Typography
             component="a"
@@ -19,21 +23,19 @@ export function Photography() {
             sx={{ color: "primary.main" }}
             target="_blank"
           >
-            video
+            {PHOTOGRAPHY_SUMMARY[1]}
           </Typography>
 
-          <Typography component="span">{` on YouTube that has more than one million views!`}</Typography>
+          <Typography component="span">{PHOTOGRAPHY_SUMMARY[2]}</Typography>
         </Typography>
       </Zoom>
 
       <Box
-        sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: 2,
-          justifyContent: "center",
-          mt: 5,
-        }}
+        display="flex"
+        flexWrap="wrap"
+        gap={2}
+        justifyContent="center"
+        mt={5}
       >
         {IMAGES.map(({ source, title }) => (
           <Box
@@ -70,8 +72,9 @@ export function Photography() {
             <Box
               alt={title}
               component="img"
+              height="100%"
               src={source.src}
-              sx={{ height: "100%", width: "100%" }}
+              width="100%"
             />
           </Box>
         ))}

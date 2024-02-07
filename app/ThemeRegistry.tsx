@@ -1,16 +1,17 @@
 "use client";
 
-import { ReactNode, useState } from "react";
+import { useState } from "react";
 
 import createCache from "@emotion/cache";
 import { CacheProvider } from "@emotion/react";
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import { useServerInsertedHTML } from "next/navigation";
 
+import { Children } from "app/types/commonProps";
+
 type ThemeRegistryProps = {
-  children: ReactNode;
   options: Record<"key", "mui">;
-};
+} & Children;
 
 export function ThemeRegistry({ children, options }: ThemeRegistryProps) {
   const [{ cache, flush }] = useState(() => {

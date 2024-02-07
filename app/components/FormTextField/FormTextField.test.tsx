@@ -3,6 +3,13 @@ import { userEvent } from "@testing-library/user-event";
 import { useForm } from "react-hook-form";
 
 import { FormTextField } from "app/components/FormTextField";
+import {
+  MAXIMUM_10_ERROR_MESSAGE,
+  MAXIMUM_10_RULE,
+  MINIMUM_0_ERROR_MESSAGE,
+  MINIMUM_1_RULE,
+} from "app/components/NumberGuesser/NumberGuesser";
+import { REQUIRED_ERROR_MESSAGE, REQUIRED_RULE } from "app/utilities";
 
 describe("test FormTextField", () => {
   function getUseFormResults() {
@@ -123,9 +130,7 @@ describe("test FormTextField", () => {
       <FormTextField
         control={getUseFormResults().control}
         name="myTextField"
-        rules={{
-          required: true,
-        }}
+        rules={REQUIRED_RULE}
       />,
     );
 
@@ -134,22 +139,19 @@ describe("test FormTextField", () => {
 
   test("renders the correct error message for a required field that is empty", async () => {
     const { control, trigger } = getUseFormResults();
-    const errorMessage = "Required";
     const textFieldName = "myTextField";
 
     render(
       <FormTextField
         control={control}
         name={textFieldName}
-        rules={{
-          required: { message: errorMessage, value: true },
-        }}
+        rules={REQUIRED_RULE}
       />,
     );
 
-    expect(screen.queryByText(errorMessage)).not.toBeInTheDocument();
+    expect(screen.queryByText(REQUIRED_ERROR_MESSAGE)).not.toBeInTheDocument();
     await act(() => trigger(textFieldName));
-    expect(screen.getByText(errorMessage)).toBeInTheDocument();
+    expect(screen.getByText(REQUIRED_ERROR_MESSAGE)).toBeInTheDocument();
   });
 
   test("renders a textbox with the correct default value", async () => {
@@ -200,51 +202,41 @@ describe("test FormTextField", () => {
 
   test("renders the correct error message when the value is greater than the max", async () => {
     const user = userEvent.setup();
-    const errorMessage = "Must be less than 11";
 
     render(
       <FormTextField
         control={getUseFormResults().control}
         name="myNumberField"
-        rules={{
-          max: {
-            message: errorMessage,
-            value: 10,
-          },
-        }}
+        rules={MAXIMUM_10_RULE}
         type="number"
       />,
     );
 
-    expect(screen.queryByText(errorMessage)).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(MAXIMUM_10_ERROR_MESSAGE),
+    ).not.toBeInTheDocument();
     await user.type(screen.getByRole("spinbutton"), "ts3ti4ng");
-    expect(screen.getByText(errorMessage)).toBeInTheDocument();
+    expect(screen.getByText(MAXIMUM_10_ERROR_MESSAGE)).toBeInTheDocument();
   });
 
   test("renders the correct error message when the value is less than the min", async () => {
     const user = userEvent.setup();
-    const errorMessage = "Must be greater than 0";
 
     render(
       <FormTextField
         control={getUseFormResults().control}
         name="myNumberField"
-        rules={{
-          min: {
-            message: errorMessage,
-            value: 1,
-          },
-        }}
+        rules={MINIMUM_1_RULE}
         type="number"
       />,
     );
 
     const numberField = screen.getByRole("spinbutton");
 
-    expect(screen.queryByText(errorMessage)).not.toBeInTheDocument();
+    expect(screen.queryByText(MINIMUM_0_ERROR_MESSAGE)).not.toBeInTheDocument();
     await user.type(numberField, "ts3ti4ng");
     await user.clear(numberField);
-    expect(screen.getByText(errorMessage)).toBeInTheDocument();
+    expect(screen.getByText(MINIMUM_0_ERROR_MESSAGE)).toBeInTheDocument();
   });
 
   test("renders the correct error message when the validate rule is true", async () => {

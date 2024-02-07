@@ -2,9 +2,13 @@ import { ComponentProps } from "react";
 
 import { Button } from "@mui/material";
 
-type PlayerButtonProps = {
+type PlayerButtonProps = PlayerButtonOwnProps &
+  Required<Pick<ComponentProps<typeof Button>, "onClick">>;
+type PlayerButtonOwnProps = {
   text: "-" | "+" | "X";
-} & Required<Pick<ComponentProps<typeof Button>, "onClick">>;
+};
+
+const size = 32;
 
 export function PlayerButton({
   onClick: handleClick,
@@ -15,7 +19,7 @@ export function PlayerButton({
       color={text === "-" || text === "X" ? "error" : "success"}
       onClick={handleClick}
       size="small"
-      sx={{ height: 32, minWidth: 32, width: 32 }}
+      sx={{ height: size, minWidth: size, width: size }}
       variant="contained"
     >
       {text}

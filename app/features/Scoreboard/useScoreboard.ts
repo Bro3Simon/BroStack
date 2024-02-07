@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-type Action = "decrement" | "increment" | "remove";
+export type Action = "decrement" | "increment";
 
 export const PLAYERS = [
   {
@@ -33,25 +33,6 @@ export function useScoreboard() {
     1, // Start at 1 so that 0 isn't the high score at start.
   );
 
-  function handleClickPlayerButton(playerId: number, action: Action) {
-    if (action === "remove") {
-      setPlayers((previousPlayers) =>
-        previousPlayers.filter(({ id }) => id !== playerId),
-      );
-    } else {
-      setPlayers((previousPlayers) =>
-        previousPlayers.map((player) => {
-          if (player.id !== playerId) return player;
-
-          const newScore =
-            action === "decrement" ? player.score - 1 : player.score + 1;
-
-          return { ...player, score: newScore };
-        }),
-      );
-    }
-  }
-
   function handleAddPlayer(newPlayerName: string) {
     setPlayers((previousPlayers) => [
       ...previousPlayers,
@@ -63,5 +44,30 @@ export function useScoreboard() {
     ]);
   }
 
-  return { handleAddPlayer, handleClickPlayerButton, highScore, players };
+  function handleRemovePlayer(playerId: number) {
+    setPlayers((previousPlayers) =>
+      previousPlayers.filter(({ id }) => id !== playerId),
+    );
+  }
+
+  function handleAdjustPlayerScore(playerId: number, action: Action) {
+    setPlayers((previousPlayers) =>
+      previousPlayers.map((player) => {
+        if (player.id !== playerId) return player;
+
+        const newScore =
+          action === "decrement" ? player.score - 1 : player.score + 1;
+
+        return { ...player, score: newScore };
+      }),
+    );
+  }
+
+  return {
+    handleAddPlayer,
+    handleAdjustPlayerScore,
+    handleRemovePlayer,
+    highScore,
+    players,
+  };
 }

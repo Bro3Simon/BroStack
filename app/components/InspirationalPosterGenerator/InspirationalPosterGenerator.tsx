@@ -32,18 +32,15 @@ export function InspirationalPosterGenerator() {
         <CardContent sx={{ display: "flex", flexDirection: "column" }}>
           <img alt={image?.title} src={image?.source.src} />
 
-          <Box sx={{ bgcolor: "darkgoldenrod", px: 2, py: 1 }}>
+          <Box bgcolor="darkgoldenrod" px={2} py={1}>
             <Typography component="blockquote" data-testid="quote">
               {quote?.text}
 
-              <Box
-                component="footer"
-                sx={{ display: "flex", justifyContent: "center" }}
-              >
+              <Box component="footer" display="flex" justifyContent="center">
                 <Typography
                   component="cite"
                   data-testid="author"
-                  sx={{ textAlign: "center" }}
+                  textAlign="center"
                 >
                   ~ {quote?.author}
                 </Typography>

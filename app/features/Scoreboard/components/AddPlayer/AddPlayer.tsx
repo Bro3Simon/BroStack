@@ -2,6 +2,7 @@ import { Box, Button } from "@mui/material";
 
 import { FormTextField } from "app/components/FormTextField";
 import { useAddPlayer } from "app/features/Scoreboard/components/AddPlayer/useAddPlayer";
+import { REQUIRED_RULE } from "app/utilities";
 
 type AddPlayerProps = { onAddPlayer: (newPlayerName: string) => void };
 
@@ -12,17 +13,15 @@ export function AddPlayer({ onAddPlayer }: AddPlayerProps) {
 
   return (
     <Box
+      alignItems="center"
+      bgcolor="primary.main"
+      color="primary.contrastText"
       component="form"
+      display="flex"
+      gap={2}
+      justifyContent="space-between"
       onSubmit={handleSubmit}
-      sx={{
-        alignItems: "center",
-        bgcolor: "primary.main",
-        color: "primary.contrastText",
-        display: "flex",
-        gap: 2,
-        justifyContent: "space-between",
-        p: 2,
-      }}
+      p={2}
     >
       <FormTextField
         control={control}
@@ -44,9 +43,7 @@ export function AddPlayer({ onAddPlayer }: AddPlayerProps) {
         }}
         label="Name"
         name="newPlayerName"
-        rules={{
-          required: { message: "Required", value: true },
-        }}
+        rules={REQUIRED_RULE}
       ></FormTextField>
 
       <Button color="success" size="small" type="submit" variant="contained">

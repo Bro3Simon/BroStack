@@ -1,17 +1,18 @@
 import { render, screen } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
 
+import { PLAYERS_TITLE, Scoreboard } from "app/features/Scoreboard/Scoreboard";
+import { ADD_PLAYER_TEXT } from "app/features/Scoreboard/components/AddPlayer/AddPlayer";
+import * as useAddPlayer from "app/features/Scoreboard/components/AddPlayer/useAddPlayer";
 import {
   DECREMENT_BUTTON_TEXT,
   INCREMENT_BUTTON_TEXT,
-  PLAYERS_TITLE,
   REMOVE_BUTTON_TEXT,
-  Scoreboard,
-} from "app/features/Scoreboard/Scoreboard";
-import { ADD_PLAYER_TEXT } from "app/features/Scoreboard/components/AddPlayer/AddPlayer";
-import * as useAddPlayer from "app/features/Scoreboard/components/AddPlayer/useAddPlayer";
+} from "app/features/Scoreboard/components/Player/Player";
 import * as useStopWatch from "app/features/Scoreboard/components/StopWatch/useStopWatch";
 import { PLAYERS } from "app/features/Scoreboard/useScoreboard";
+
+export const STAR_ICON_TEST_ID = "StarIcon";
 
 jest.mock("app/features/Scoreboard/components/AddPlayer/useAddPlayer", () => ({
   __esModule: true,
@@ -43,21 +44,13 @@ describe("test Scoreboard", () => {
     jest.restoreAllMocks();
   });
 
-  test("renders a remove button for every player", () => {
-    render(<Scoreboard />);
-
-    expect(screen.getAllByText(REMOVE_BUTTON_TEXT).length).toEqual(
-      PLAYERS.length,
-    );
-  });
-
   test("does not render a gold star initially", () => {
     render(<Scoreboard />);
 
-    expect(screen.queryByTestId("StarIcon")).not.toBeInTheDocument();
+    expect(screen.queryByTestId(STAR_ICON_TEST_ID)).not.toBeInTheDocument();
   });
 
-  test("renders each players name", () => {
+  test("renders all the players", () => {
     render(<Scoreboard />);
 
     PLAYERS.forEach(({ name }) => {
@@ -65,29 +58,13 @@ describe("test Scoreboard", () => {
     });
   });
 
-  test("renders a decrement button for every player", () => {
-    render(<Scoreboard />);
-
-    expect(screen.getAllByText(DECREMENT_BUTTON_TEXT).length).toEqual(
-      PLAYERS.length,
-    );
-  });
-
-  test("renders each players score as 0 initially", () => {
+  test("renders each player's score as 0 initially", () => {
     const stopWatch0Count = 1;
 
     render(<Scoreboard />);
 
     expect(screen.getAllByText("0").length).toEqual(
       PLAYERS.length + stopWatch0Count,
-    );
-  });
-
-  test("renders an increment button for every player", () => {
-    render(<Scoreboard />);
-
-    expect(screen.getAllByText(INCREMENT_BUTTON_TEXT).length).toEqual(
-      PLAYERS.length,
     );
   });
 
@@ -127,15 +104,6 @@ describe("test Scoreboard", () => {
 
     await user.click(screen.getAllByText(INCREMENT_BUTTON_TEXT)[0]);
     expect(screen.getByText("1")).toBeInTheDocument();
-  });
-
-  test("renders a gold star for the player with the high score", async () => {
-    const user = userEvent.setup();
-
-    render(<Scoreboard />);
-
-    await user.click(screen.getAllByText(INCREMENT_BUTTON_TEXT)[0]);
-    expect(screen.getByTestId("StarIcon")).toBeInTheDocument();
   });
 
   test("renders a new player row with the correct name after clicking add player", async () => {

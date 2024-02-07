@@ -1,6 +1,6 @@
 import { Card, Typography } from "@mui/material";
-import { Zoom } from "react-awesome-reveal";
 
+import { Zoom } from "app/components/Zoom";
 import { SKILLS } from "app/data/skills";
 import { Categories } from "app/features/Profile/components/Categories";
 

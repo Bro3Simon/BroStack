@@ -10,7 +10,7 @@ export function useNumberGuesser() {
   const [computerNumber, setComputerNumber] = useState(
     computeRandomNumber(1, 10),
   );
-  const [userGuesses, setUserGuesses] = useState<number[]>([]);
+  const [userGuesses, setUserGuesses] = useState<string[]>([]);
   const [numberOfGuesses, setNumberOfGuesses] = useState(0);
   const {
     control,
@@ -58,14 +58,22 @@ export function useNumberGuesser() {
   }
 
   function submitGuess(guess: number) {
-    if (guess !== computerNumber && !userGuesses.includes(guess)) {
+    const stringifiedGuess = guess.toString();
+
+    if (guess !== computerNumber && !userGuesses.includes(stringifiedGuess)) {
       setState("tryAgain");
       setFocus("guess");
       setUserGuesses((previousUserGuesses) =>
-        [...previousUserGuesses, guess].sort(
-          // Prevent sort from converting the values to strings,
-          // and incorrectly sorting them.
-          (firstNumber, secondNumber) => firstNumber - secondNumber,
+        [...previousUserGuesses, stringifiedGuess].sort(
+          (firstNumber, secondNumber) =>
+            firstNumber.localeCompare(
+              secondNumber,
+              navigator.languages[0] || navigator.language,
+              {
+                ignorePunctuation: true,
+                numeric: true,
+              },
+            ),
         ),
       );
     } else {

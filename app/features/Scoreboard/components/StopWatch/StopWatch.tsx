@@ -2,7 +2,7 @@ import { Box, Button, Typography } from "@mui/material";
 
 import { useStopWatch } from "app/features/Scoreboard/components/StopWatch/useStopWatch";
 
-export const TITLE = "stop watch";
+export const TITLE = "Stop Watch";
 export const RESET_BUTTON_LABEL = "reset";
 export const START_BUTTON_LABEL = "start";
 export const STOP_BUTTON_LABEL = "stop";
@@ -17,12 +17,12 @@ export function StopWatch() {
   } = useStopWatch();
 
   return (
-    <Box sx={{ textAlign: "center" }}>
+    <Box textAlign="center">
       <Typography>{TITLE}</Typography>
 
-      <Typography sx={{ my: 2 }}>{elapsedTime}</Typography>
+      <Typography my={2}>{elapsedTime}</Typography>
 
-      <Box sx={{ display: "flex", gap: 2 }}>
+      <Box display="flex" gap={2}>
         <Button
           color="error"
           onClick={handleClickReset}
