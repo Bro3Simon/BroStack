@@ -11,14 +11,14 @@ import {
 } from "@mui/material";
 
 import { SKILLS } from "app/data/skills";
-import { useTabs } from "app/hooks/useTabs";
-import { computeTabAndPanelProps } from "app/utilities";
+import { useCategories } from "app/features/Profile/components/Categories/useCategories";
+import { computeTabAndPanelProps } from "app/features/Profile/components/Categories/utilities";
 
 type CategoriesType = typeof SKILLS.categories;
 type PropsOfCategories = { categories: CategoriesType };
 
 export function Categories({ categories }: PropsOfCategories) {
-  const { handleChangeTab, tab } = useTabs();
+  const { handleChangeTab, tab } = useCategories();
 
   return (
     <>

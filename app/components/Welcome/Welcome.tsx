@@ -1,30 +1,30 @@
 "use client";
 
-import { Box, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { Slide } from "react-awesome-reveal";
 
+import { BoxWithBackgroundImage } from "app/components/BoxWithBackgroundImage";
+import { JOB_TITLE } from "app/data/general";
 import { useSmAndUp } from "app/hooks/useSmAndUp";
 import welcome from "app/images/welcome.jpg";
-import { JOB_TITLE } from "app/utilities";
+
+export const WHO_AM_I = "My name is";
+export const MY_NAME = " Simon";
+export const WHAT_AM_I = "and I am a";
 
 export function Welcome() {
   const { isSmAndUp } = useSmAndUp();
 
   return (
-    <Box
+    <BoxWithBackgroundImage
+      alt=""
       component="section"
-      data-testid="welcome"
-      sx={{
-        backgroundImage: `url(${welcome.src})`,
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        color: "rgba(255, 255, 255, 0.5)",
-        display: "flex",
-        flexDirection: "column",
-        height: "100vh",
-        justifyContent: "center",
-      }}
+      display="flex"
+      flexDirection="column"
+      height="100vh"
+      justifyContent="center"
+      sizes="100vw"
+      src={welcome}
     >
       <Slide delay={1000} direction="left" triggerOnce>
         <Typography
@@ -39,13 +39,14 @@ export function Welcome() {
             sx={{ ml: 1, mt: { sm: 5, xs: 3 } }}
             variant={isSmAndUp ? "h2" : "h4"}
           >
-            My Name is
+            {WHO_AM_I}
+
             <Typography
               component="span"
               sx={{ color: "warning.main" }}
               variant={isSmAndUp ? "h1" : "h3"}
             >
-              {" Simon"}
+              {MY_NAME}
             </Typography>
           </Typography>
 
@@ -54,7 +55,8 @@ export function Welcome() {
             sx={{ display: "block", ml: { sm: 5, xs: 3 } }}
             variant={isSmAndUp ? "h5" : "h6"}
           >
-            and I am a
+            {WHAT_AM_I}
+
             <Typography
               component="span"
               sx={{ color: "warning.main" }}
@@ -65,6 +67,6 @@ export function Welcome() {
           </Typography>
         </Typography>
       </Slide>
-    </Box>
+    </BoxWithBackgroundImage>
   );
 }

@@ -1,10 +1,8 @@
 import { render, screen } from "@testing-library/react";
 
+import { SKILLS } from "app/data/skills";
 import { PROFILE_SUMMARY, Profile } from "app/features/Profile/Profile";
-import {
-  setupIntersectionObserverMock,
-  testCategoriesIsRendered,
-} from "app/testUtilities";
+import { setupIntersectionObserverMock } from "app/testUtilities";
 
 describe("test Profile", () => {
   test("renders all of the correct text", () => {
@@ -23,7 +21,12 @@ describe("test Profile", () => {
   test("renders Categories", () => {
     render(<Profile />);
 
-    testCategoriesIsRendered();
+    const text =
+      typeof SKILLS.categories[0].items[1] === "string"
+        ? SKILLS.categories[0].items[1]
+        : SKILLS.categories[0].items[1].text;
+
+    expect(screen.getByText(text)).toBeInTheDocument();
     jest.restoreAllMocks();
   });
 });

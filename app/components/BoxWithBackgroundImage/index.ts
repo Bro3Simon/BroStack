@@ -1,0 +1,1 @@
+export { BoxWithBackgroundImage } from "./BoxWithBackgroundImage";

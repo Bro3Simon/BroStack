@@ -1,5 +1,6 @@
 import { Box, Typography } from "@mui/material";
 
+import { BoxWithBackgroundImage } from "app/components/BoxWithBackgroundImage";
 import { Zoom } from "app/components/Zoom";
 import { IMAGES } from "app/data/images";
 
@@ -8,6 +9,9 @@ export const PHOTOGRAPHY_SUMMARY = [
   "video",
   " on YouTube that has more than one million views!",
 ];
+
+const xsSize = 220;
+const smSize = 440;
 
 export function Photography() {
   return (
@@ -38,9 +42,12 @@ export function Photography() {
         mt={5}
       >
         {IMAGES.map(({ source, title }) => (
-          <Box
+          <BoxWithBackgroundImage
+            alt={title}
             component={Zoom}
             key={title}
+            sizes={`(max-width: 559px) ${xsSize}px,  ${smSize}px`}
+            src={source.src}
             sx={{
               "::before": {
                 md: {
@@ -52,6 +59,7 @@ export function Photography() {
                   top: 0,
                   transform: "skewX(45deg)",
                   width: "100%",
+                  zIndex: 1,
                 },
               },
               ":hover": {
@@ -65,18 +73,10 @@ export function Photography() {
                 },
               },
               filter: { md: "grayscale(100%)" },
-              maxWidth: { md: "48%", xs: "100%" },
-              overflow: { md: "hidden" },
+              height: { sm: 300, xs: 150 },
+              width: { sm: smSize, xs: xsSize },
             }}
-          >
-            <Box
-              alt={title}
-              component="img"
-              height="100%"
-              src={source.src}
-              width="100%"
-            />
-          </Box>
+          ></BoxWithBackgroundImage>
         ))}
       </Box>
     </>

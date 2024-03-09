@@ -3,13 +3,37 @@ import { Button } from "@mui/material";
 import { render, screen } from "@testing-library/react";
 // eslint-disable-next-line import/named
 import { UserEvent, userEvent } from "@testing-library/user-event";
+import mediaQuery from "css-mediaquery";
 
+import { WEB_SITE_NAME } from "app/data/general";
 import { NAV_BAR_LINKS } from "app/data/navBarLinks";
 import { FunctionalityWrapper } from "app/features/NavBar/components/FunctionalityWrapper";
 import { OPEN_MENU_LABEL } from "app/features/NavBar/components/FunctionalityWrapper/FunctionalityWrapper";
 import { NavElement } from "app/features/NavBar/components/NavElement";
-import { MUI_BREAKPOINTS, resizeScreenSize } from "app/testUtilities";
-import { WEB_SITE_NAME } from "app/utilities";
+
+const MUI_BREAKPOINTS = {
+  lg: 1200,
+  md: 900,
+  sm: 600,
+  xl: 1536,
+};
+
+function createMatchMedia(width: number) {
+  return (query: string) => ({
+    addEventListener: () => {},
+    addListener: () => {},
+    dispatchEvent: () => true,
+    matches: mediaQuery.match(query, { width }),
+    media: "",
+    onchange: () => {},
+    removeEventListener: () => {},
+    removeListener: () => {},
+  });
+}
+
+function resizeScreenSize(width: number) {
+  window.matchMedia = createMatchMedia(width);
+}
 
 describe("test FunctionalityWrapper", () => {
   test("renders the supplied logo button", () => {

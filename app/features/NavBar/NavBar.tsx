@@ -1,10 +1,10 @@
 import MenuIcon from "@mui/icons-material/Menu";
 import { AppBar, Avatar, Button, Typography } from "@mui/material";
 
+import { WEB_SITE_NAME } from "app/data/general";
 import { FunctionalityWrapper } from "app/features/NavBar/components/FunctionalityWrapper";
 import { NavElement } from "app/features/NavBar/components/NavElement";
 import logo from "app/images/logo.png";
-import { WEB_SITE_NAME } from "app/utilities";
 
 export function NavBar() {
   return (

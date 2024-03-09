@@ -1,0 +1,13 @@
+{
+  "depcheck": {
+    "ignoreMatches": [
+      "@fontsource/roboto",
+      "@types/node",
+      "@types/react-dom",
+      "babel-jest",
+      "identity-obj-proxy",
+      "husky",
+      "jest-environment-jsdom"
+    ]
+  }
+}

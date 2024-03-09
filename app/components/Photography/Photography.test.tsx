@@ -26,16 +26,16 @@ describe("test Photography", () => {
     expect(screen.getAllByRole("img")).toHaveLength(IMAGES.length);
   });
 
-  test("each photo has the correct alt text and source", () => {
+  test("each photo has the correct alt text", () => {
     setupIntersectionObserverMock();
     render(<Photography />);
 
-    IMAGES.forEach(({ source: { src: source }, title }) => {
+    IMAGES.forEach(({ title }) => {
       const image = screen.getByRole("img", {
         name: title,
       }) as HTMLImageElement;
 
-      expect(image.src).toContain(source);
+      expect(image).toBeInTheDocument();
     });
   });
 });

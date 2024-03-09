@@ -1,6 +1,6 @@
 import { ThemeRegistry } from "app/ThemeRegistry";
+import { JOB_TITLE } from "app/data/general";
 import { Children } from "app/types/commonProps";
-import { JOB_TITLE } from "app/utilities";
 
 import type { Metadata } from "next";
 

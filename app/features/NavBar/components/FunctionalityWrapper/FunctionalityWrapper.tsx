@@ -4,7 +4,6 @@ import { ReactElement } from "react";
 
 import { Drawer, IconButton } from "@mui/material";
 
-import { ConditionallyRender } from "app/components/ConditionallyRender";
 import { useFunctionalityWrapper } from "app/features/NavBar/components/FunctionalityWrapper/useFunctionalityWrapper";
 
 export const OPEN_MENU_LABEL = "Open Menu";
@@ -27,7 +26,7 @@ export function FunctionalityWrapper({
 
   return (
     <>
-      <ConditionallyRender shouldRender={!isMdAndUp}>
+      {!isMdAndUp ? (
         <IconButton
           aria-label={isDrawerOpen ? "Close Menu" : OPEN_MENU_LABEL}
           onClick={handleToggleDrawer}
@@ -35,7 +34,7 @@ export function FunctionalityWrapper({
         >
           {mobileMenuIcon}
         </IconButton>
-      </ConditionallyRender>
+      ) : null}
 
       {logoButton}
 

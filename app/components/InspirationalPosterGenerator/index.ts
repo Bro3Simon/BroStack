@@ -1,1 +1,0 @@
-export { InspirationalPosterGenerator } from "./InspirationalPosterGenerator";
