@@ -1,3 +1,6 @@
+import { CategoriesType } from "app/features/Profile/components/Categories/Categories";
+
+type Item = CategoriesType[number]["items"][number];
 export function computeTabAndPanelProps(
   name: string,
   variant: "tab" | "panel",
@@ -16,4 +19,8 @@ export function computeTabAndPanelProps(
       role: "tabpanel" as const,
     }),
   };
+}
+
+export function extractKeyFromItem({ content }: Item) {
+  return content.map(({ text }) => text).join(" ");
 }

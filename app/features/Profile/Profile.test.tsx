@@ -5,7 +5,7 @@ import { PROFILE_SUMMARY, Profile } from "app/features/Profile/Profile";
 import { setupIntersectionObserverMock } from "app/testUtilities";
 
 describe("test Profile", () => {
-  test("renders all of the correct text", () => {
+  test("renders profile summary text", () => {
     setupIntersectionObserverMock();
     render(<Profile />);
 
@@ -21,12 +21,9 @@ describe("test Profile", () => {
   test("renders Categories", () => {
     render(<Profile />);
 
-    const text =
-      typeof SKILLS.categories[0].items[1] === "string"
-        ? SKILLS.categories[0].items[1]
-        : SKILLS.categories[0].items[1].text;
+    const exampleCategoryName = SKILLS.categories[0].name;
 
-    expect(screen.getByText(text)).toBeInTheDocument();
+    expect(screen.getByText(exampleCategoryName)).toBeInTheDocument();
     jest.restoreAllMocks();
   });
 });

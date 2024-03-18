@@ -10,11 +10,15 @@ import {
   Tabs,
 } from "@mui/material";
 
+import { ConditionalLinkWrapper } from "app/components/ConditionalLinkWrapper";
 import { SKILLS } from "app/data/skills";
 import { useCategories } from "app/features/Profile/components/Categories/useCategories";
-import { computeTabAndPanelProps } from "app/features/Profile/components/Categories/utilities";
+import {
+  computeTabAndPanelProps,
+  extractKeyFromItem,
+} from "app/features/Profile/components/Categories/utilities";
 
-type CategoriesType = typeof SKILLS.categories;
+export type CategoriesType = typeof SKILLS.categories;
 type PropsOfCategories = { categories: CategoriesType };
 
 export function Categories({ categories }: PropsOfCategories) {
@@ -42,20 +46,41 @@ export function Categories({ categories }: PropsOfCategories) {
 
             <List sx={{ display: "flex", flexWrap: "wrap", gap: 2 }}>
               {items.map((item) => {
-                const hasAbbreviation = typeof item !== "string";
-                const text = hasAbbreviation ? item.text : item;
+                const hasLink = "link" in item;
 
                 return (
-                  <ListItem key={text} sx={{ display: "flex", width: "auto" }}>
-                    <ListItemText
-                      primary={text}
-                      {...(hasAbbreviation && {
-                        primaryTypographyProps: {
-                          component: "abbr",
-                          title: item.title,
-                        },
+                  <ListItem
+                    key={extractKeyFromItem(item)}
+                    sx={{ display: "flex", width: "auto" }}
+                  >
+                    <ConditionalLinkWrapper
+                      href={item.link}
+                      rel="noreferrer"
+                      shouldRenderLink={hasLink}
+                      sx={{ display: "flex" }}
+                      target="_blank"
+                      underline="none"
+                    >
+                      {item.content.map((content) => {
+                        const { hasLeftMargin, hasRightMargin, text } = content;
+                        const isAbbreviation = "title" in content;
+
+                        return (
+                          <ListItemText
+                            key={text}
+                            primary={text}
+                            {...(isAbbreviation && {
+                              primaryTypographyProps: {
+                                component: "abbr",
+                                title: content.title,
+                                ...(hasLeftMargin && { ml: 1 }),
+                                ...(hasRightMargin && { mr: 1 }),
+                              },
+                            })}
+                          />
+                        );
                       })}
-                    />
+                    </ConditionalLinkWrapper>
                   </ListItem>
                 );
               })}

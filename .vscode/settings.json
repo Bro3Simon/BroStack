@@ -1,5 +1,12 @@
 {
-  "cSpell.words": ["fontsource", "mediaquery", "npmcheckrc", "roboto"],
+  "cSpell.words": [
+    "fontsource",
+    "mediaquery",
+    "npmcheckrc",
+    "Postgre",
+    "roboto",
+    "Vuetify"
+  ],
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },

@@ -57,12 +57,34 @@ describe("test Categories", () => {
 
       const tabPanel = screen.getByRole("tabpanel", { name });
 
-      items.forEach((item) => {
-        if (typeof item === "string") {
-          expect(within(tabPanel).getByText(item)).toBeInTheDocument();
-        } else {
-          expect(within(tabPanel).getByText(item.text)).toBeInTheDocument();
-        }
+      items.forEach(({ content }) => {
+        content.forEach(({ text }) => {
+          expect(within(tabPanel).getByText(text)).toBeInTheDocument();
+        });
+      });
+    });
+  });
+
+  test("renders all the links correctly for all the tab panels", () => {
+    const user = userEvent.setup();
+
+    render(<Categories categories={SKILLS.categories} />);
+
+    SKILLS.categories.forEach(async ({ items, name }) => {
+      await user.click(
+        screen.getByRole("tab", {
+          name,
+        }),
+      );
+
+      const tabPanel = screen.getByRole("tabpanel", { name });
+
+      items.forEach(({ content, link }) => {
+        const linkText = content.map(({ text }) => text).join(" ");
+
+        expect(
+          within(tabPanel).getByRole("link", { name: linkText }),
+        ).toHaveAttribute("href", link);
       });
     });
   });
