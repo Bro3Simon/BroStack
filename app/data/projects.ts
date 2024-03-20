@@ -3,6 +3,7 @@ import gtd from "app/images/gtd.jpg";
 import hoverAnimations from "app/images/hoverAnimations.jpg";
 import inspirationalPosterGenerator from "app/images/inspirationalPosterGenerator.jpg";
 import numberGuesser from "app/images/numberGuesser.jpg";
+import peoplePage from "app/images/peoplePage.jpg";
 import recipes from "app/images/recipes.jpg";
 import scoreboard from "app/images/scoreboard.jpg";
 import searchFlickr from "app/images/searchFlickr.jpg";
@@ -17,6 +18,13 @@ export const PROJECTS = [
   },
   {
     description:
+      'A sample "People" page with integrated search and filtering capabilities, highlighting my proficiency in implementing these standard features using React, Next and GraphQL. Special emphasis was placed on ensuring accessibility and optimizing performance for an enhanced user experience.',
+    href: "https://people-page.vercel.app/",
+    image: peoplePage,
+    name: "People Page",
+  },
+  {
+    description:
       "Several custom button hover animations showcasing my proficiency in CSS animations. These animations create an engaging user experience, demonstrating my creativity and attention to detail in web development.",
     href: "https://hover-animations-ten.vercel.app",
     image: hoverAnimations,
@@ -24,17 +32,17 @@ export const PROJECTS = [
   },
   {
     description:
-      "An engaging number guesser game that showcases the rapid computational abilities of computers.",
-    href: "https://number-guesser-six.vercel.app",
-    image: numberGuesser,
-    name: "Number Guesser",
-  },
-  {
-    description:
       "A versatile scoreboard equipped with a stopwatch feature, designed to assist in keeping score for various games. This project demonstrates proficiency in React and frontend concepts, showcasing practical skills and knowledge.",
     href: "https://scoreboard-ruddy.vercel.app",
     image: scoreboard,
     name: "Scoreboard",
+  },
+  {
+    description:
+      "An engaging number guesser game that showcases the rapid computational abilities of computers.",
+    href: "https://number-guesser-six.vercel.app",
+    image: numberGuesser,
+    name: "Number Guesser",
   },
   {
     description:
